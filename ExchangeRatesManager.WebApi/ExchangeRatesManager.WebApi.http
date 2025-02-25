@@ -1,0 +1,6 @@
+@ExchangeRatesManager.WebApi_HostAddress = http://localhost:5191
+
+GET {{ExchangeRatesManager.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
