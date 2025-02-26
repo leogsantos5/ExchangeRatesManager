@@ -15,11 +15,11 @@ namespace ExchangeRatesManager.Infrastructure.Migrations
                 name: "ExchangeRates",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    FromCurrency = table.Column<string>(type: "text", nullable: false),
-                    ToCurrency = table.Column<string>(type: "text", nullable: false),
-                    Bid = table.Column<decimal>(type: "numeric", nullable: false),
-                    Ask = table.Column<decimal>(type: "numeric", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FromCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Bid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Ask = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
