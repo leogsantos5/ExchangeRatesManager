@@ -20,7 +20,7 @@ public class ExchangeRatesController : ControllerBase
     public async Task<IActionResult> AddExchangeRate([FromBody] AddExchangeRateCommand command)
     {
         var exchangeRateId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetExchangeRate), new { id = exchangeRateId }, null);
+        return CreatedAtAction(nameof(GetExchangeRate), new { id = exchangeRateId });
     }
 
     [HttpGet("{fromCurrency}/{toCurrency}")]
@@ -28,9 +28,20 @@ public class ExchangeRatesController : ControllerBase
     {
         var query = new GetExchangeRateQuery(fromCurrency, toCurrency);
         var result = await _mediator.Send(query);
-        if (result == null)
-            return NotFound();
-
         return Ok(result);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateExchangeRate([FromBody] UpdateExchangeRateCommand command)
+    {
+        await _mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteExchangeRate(Guid id)
+    {
+        await _mediator.Send(new DeleteExchangeRateCommand(id));
+        return NoContent();
     }
 }

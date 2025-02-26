@@ -2,7 +2,7 @@
 
 namespace ExchangeRatesManager.Application.Queries;
 
-public class GetExchangeRateQuery : IRequest<ExchangeRateViewModel>  // Returns a DTO
+public class GetExchangeRateQuery : IRequest<ExchangeRateViewModel>  
 {
     public string FromCurrencyCode { get; }
     public string ToCurrencyCode { get; }

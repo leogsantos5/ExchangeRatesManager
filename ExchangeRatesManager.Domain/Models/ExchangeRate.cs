@@ -3,10 +3,10 @@
 public class ExchangeRate 
 {
     public Guid Id { get; private set; }
-    public string FromCurrency { get; private set; } 
-    public string ToCurrency { get; private set; }  
-    public decimal Bid { get; private set; }
-    public decimal Ask { get; private set; }
+    public string FromCurrency { get; set; } 
+    public string ToCurrency { get; set; }  
+    public decimal Bid { get; set; }
+    public decimal Ask { get; set; }
 
     public ExchangeRate(string fromCurrency, string toCurrency, decimal bid, decimal ask)
     {

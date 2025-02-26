@@ -16,6 +16,6 @@ public class AddExchangingRateCommandHandler : IRequestHandler<AddExchangeRateCo
     public async Task<Guid> Handle(AddExchangeRateCommand request, CancellationToken cancellationToken)
     {
         var exchangeRate = new ExchangeRate(request.FromCurrencyCode, request.ToCurrencyCode, request.Bid, request.Ask);
-        return await _exchangeRateRepo.AddAsync(exchangeRate);  
+        return await _exchangeRateRepo.CreateAsync(exchangeRate);  
     }
 }
