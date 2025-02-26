@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExchangeRatesManager.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20250226002000_InitialMigration")]
+    [Migration("20250226234555_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -32,10 +32,12 @@ namespace ExchangeRatesManager.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Ask")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(20, 8)
+                        .HasColumnType("decimal(20,8)");
 
                     b.Property<decimal>("Bid")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(20, 8)
+                        .HasColumnType("decimal(20,8)");
 
                     b.Property<string>("FromCurrency")
                         .IsRequired()

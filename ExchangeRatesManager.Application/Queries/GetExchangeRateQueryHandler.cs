@@ -15,13 +15,16 @@ public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery,
     private readonly IAlphaVantageService _alphaVantageService;
     private readonly IMapper _mapper;
     private readonly IConfiguration _config;
+    private readonly ExchangeRatePublisher _exchangeRatePublisher;
 
-    public GetExchangeRateQueryHandler(IExchangeRateRepository exchangeRateRepo, IAlphaVantageService alphaVantageService, IMapper mapper, IConfiguration config)
+    public GetExchangeRateQueryHandler(IExchangeRateRepository exchangeRateRepo, IAlphaVantageService alphaVantageService, 
+                                       IMapper mapper, IConfiguration config, ExchangeRatePublisher exchangeRatePublisher)
     {
         _exchangeRateRepo = exchangeRateRepo;
         _alphaVantageService = alphaVantageService;
         _mapper = mapper;
         _config = config;
+        _exchangeRatePublisher = exchangeRatePublisher;
     }
 
     public async Task<ExchangeRateViewModel> Handle(GetExchangeRateQuery request, CancellationToken cancellationToken)
@@ -37,9 +40,10 @@ public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery,
 
             decimal bid = ParseStringToDecimal(externalRate.ExchangeRateData.Bid);
             decimal ask = ParseStringToDecimal(externalRate.ExchangeRateData.Ask);
-
             exchangeRate = new ExchangeRate(request.FromCurrencyCode, request.ToCurrencyCode, bid, ask);
+            
             await _exchangeRateRepo.CreateAsync(exchangeRate);
+            await _exchangeRatePublisher.PublishExchangeRateAddedEvent(request.FromCurrencyCode, request.ToCurrencyCode, bid, ask);
         }
 
         return _mapper.Map<ExchangeRateViewModel>(exchangeRate);

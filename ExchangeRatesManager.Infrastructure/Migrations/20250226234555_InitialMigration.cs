@@ -18,8 +18,8 @@ namespace ExchangeRatesManager.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FromCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ToCurrency = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Bid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Ask = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Bid = table.Column<decimal>(type: "decimal(20,8)", precision: 20, scale: 8, nullable: false),
+                    Ask = table.Column<decimal>(type: "decimal(20,8)", precision: 20, scale: 8, nullable: false)
                 },
                 constraints: table =>
                 {

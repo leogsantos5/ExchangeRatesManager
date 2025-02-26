@@ -25,6 +25,9 @@ string alphaVantageBaseUrl = builder.Configuration["AlphaVantage:BaseUrl"]!;
 builder.Services.AddRefitClient<IAlphaVantageService>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(alphaVantageBaseUrl));
 
+builder.Services.AddScoped<ExchangeRatePublisher>();
+builder.Services.AddHostedService<ExchangeRateConsumer>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

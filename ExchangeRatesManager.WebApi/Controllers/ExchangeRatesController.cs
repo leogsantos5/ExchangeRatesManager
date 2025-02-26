@@ -31,7 +31,7 @@ public class ExchangeRatesController : ControllerBase
         return Ok(result);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
     public async Task<IActionResult> UpdateExchangeRate([FromBody] UpdateExchangeRateCommand command)
     {
         await _mediator.Send(command);
