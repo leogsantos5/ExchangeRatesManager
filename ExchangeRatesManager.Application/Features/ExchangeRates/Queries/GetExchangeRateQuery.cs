@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace ExchangeRatesManager.Application.Queries;
+namespace ExchangeRatesManager.Application.Features.ExchangeRates.Queries;
 
-public class GetExchangeRateQuery : IRequest<ExchangeRateViewModel>  
+public class GetExchangeRateQuery : IRequest<ExchangeRateViewModel>
 {
     public string FromCurrencyCode { get; }
     public string ToCurrencyCode { get; }

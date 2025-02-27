@@ -1,4 +1,4 @@
-﻿namespace ExchangeRatesManager.Application.Queries;
+﻿namespace ExchangeRatesManager.Application.Features.ExchangeRates.Queries;
 
 public class ExchangeRateViewModel
 {

@@ -3,14 +3,14 @@ using ExchangeRatesManager.Domain.Models;
 using MediatR;
 using ExchangeRatesManager.Application.Services.RabbitMQ;
 
-namespace ExchangeRatesManager.Application.Commands;
+namespace ExchangeRatesManager.Application.Features.ExchangeRates.Commands;
 
 public class AddExchangingRateCommandHandler : IRequestHandler<AddExchangeRateCommand, Guid>
 {
     private readonly IExchangeRateRepository _exchangeRateRepo;
-    private ExchangeRatePublisher _exchangeRatePublisher;
+    private readonly IExchangeRatePublisher _exchangeRatePublisher;
 
-    public AddExchangingRateCommandHandler(IExchangeRateRepository repository, ExchangeRatePublisher exchangeRatePublisher)
+    public AddExchangingRateCommandHandler(IExchangeRateRepository repository, IExchangeRatePublisher exchangeRatePublisher)
     {
         _exchangeRateRepo = repository;
         _exchangeRatePublisher = exchangeRatePublisher;

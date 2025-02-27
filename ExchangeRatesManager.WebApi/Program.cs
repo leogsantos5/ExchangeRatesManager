@@ -1,6 +1,7 @@
-using ExchangeRatesManager.Application.Commands;
+using AutoMapper;
+using ExchangeRatesManager.Application.Features.ExchangeRates.Commands;
+using ExchangeRatesManager.Application.Features.ExchangeRates.Queries;
 using ExchangeRatesManager.Application.MappingProfile;
-using ExchangeRatesManager.Application.Queries;
 using ExchangeRatesManager.Application.Services.AlphaVantageAPI;
 using ExchangeRatesManager.Application.Services.RabbitMQ;
 using ExchangeRatesManager.Domain.Repositories;
@@ -22,10 +23,10 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
-
 builder.Services.AddMediatR(typeof(AddExchangeRateCommand).Assembly);
 builder.Services.AddMediatR(typeof(GetExchangeRateQuery).Assembly);
+builder.Services.AddMediatR(typeof(UpdateExchangeRateCommand).Assembly);
+builder.Services.AddMediatR(typeof(DeleteExchangeRateCommand).Assembly);
 
 builder.Services.AddAutoMapper(typeof(ExchangeRateProfile));
 
@@ -33,7 +34,10 @@ string alphaVantageBaseUrl = builder.Configuration["AlphaVantage:BaseUrl"]!;
 builder.Services.AddRefitClient<IAlphaVantageService>()
                 .ConfigureHttpClient(c => c.BaseAddress = new Uri(alphaVantageBaseUrl));
 
-builder.Services.AddScoped<ExchangeRatePublisher>();
+builder.Services.AddScoped<IExchangeRateRepository, ExchangeRateRepository>();
+builder.Services.AddScoped<IMapper, Mapper>(); 
+
+builder.Services.AddScoped<IExchangeRatePublisher, ExchangeRatePublisher>();
 builder.Services.AddHostedService<ExchangeRateConsumer>();
 
 builder.Services.AddControllers();

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace ExchangeRatesManager.Application.Commands;
+namespace ExchangeRatesManager.Application.Features.ExchangeRates.Commands;
 
-public class AddExchangeRateCommand : IRequest<Guid>  
+public class AddExchangeRateCommand : IRequest<Guid>
 {
     public string FromCurrencyCode { get; }
     public string ToCurrencyCode { get; }

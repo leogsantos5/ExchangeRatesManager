@@ -1,5 +1,5 @@
-using ExchangeRatesManager.Application.Commands;
-using ExchangeRatesManager.Application.Queries;
+using ExchangeRatesManager.Application.Features.ExchangeRates.Commands;
+using ExchangeRatesManager.Application.Features.ExchangeRates.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

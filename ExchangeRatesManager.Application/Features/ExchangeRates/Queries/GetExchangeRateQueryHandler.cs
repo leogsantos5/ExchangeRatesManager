@@ -8,7 +8,7 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using System.Globalization;
 
-namespace ExchangeRatesManager.Application.Queries;
+namespace ExchangeRatesManager.Application.Features.ExchangeRates.Queries;
 
 public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery, ExchangeRateViewModel>
 {
@@ -16,10 +16,10 @@ public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery,
     private readonly IAlphaVantageService _alphaVantageService;
     private readonly IMapper _mapper;
     private readonly IConfiguration _config;
-    private readonly ExchangeRatePublisher _exchangeRatePublisher;
+    private readonly IExchangeRatePublisher _exchangeRatePublisher;
 
-    public GetExchangeRateQueryHandler(IExchangeRateRepository exchangeRateRepo, IAlphaVantageService alphaVantageService, 
-                                       IMapper mapper, IConfiguration config, ExchangeRatePublisher exchangeRatePublisher)
+    public GetExchangeRateQueryHandler(IExchangeRateRepository exchangeRateRepo, IAlphaVantageService alphaVantageService,
+                                       IMapper mapper, IConfiguration config, IExchangeRatePublisher exchangeRatePublisher)
     {
         _exchangeRateRepo = exchangeRateRepo;
         _alphaVantageService = alphaVantageService;
@@ -42,7 +42,7 @@ public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery,
             decimal bid = ParseStringToDecimal(externalRate.ExchangeRateData.Bid);
             decimal ask = ParseStringToDecimal(externalRate.ExchangeRateData.Ask);
             exchangeRate = new ExchangeRate(request.FromCurrencyCode, request.ToCurrencyCode, bid, ask);
-            
+
             await _exchangeRateRepo.CreateAsync(exchangeRate);
             await _exchangeRatePublisher.PublishExchangeRateAddedEvent(request.FromCurrencyCode, request.ToCurrencyCode, bid, ask);
         }

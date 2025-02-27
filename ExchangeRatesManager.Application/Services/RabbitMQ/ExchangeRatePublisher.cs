@@ -6,10 +6,16 @@ using System.Text.Json;
 
 namespace ExchangeRatesManager.Application.Services.RabbitMQ;
 
-public class ExchangeRatePublisher(IConfiguration config, ILogger<ExchangeRatePublisher> logger)
+public class ExchangeRatePublisher : IExchangeRatePublisher
 {
-    private readonly IConfiguration _config = config;
-    private readonly ILogger<ExchangeRatePublisher> _logger = logger;
+    private readonly IConfiguration _config;
+    private readonly ILogger<ExchangeRatePublisher> _logger;
+
+    public ExchangeRatePublisher(IConfiguration config, ILogger<ExchangeRatePublisher> logger)
+    {
+        _config = config;
+        _logger = logger;
+    }
 
     public async Task PublishExchangeRateAddedEvent(string currencyFrom, string currencyTo, decimal bid, decimal ask)
     {

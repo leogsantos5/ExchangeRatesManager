@@ -1,5 +1,4 @@
-﻿using ExchangeRatesManager.Application.Commands;
-using ExchangeRatesManager.Application.Exceptions;
+﻿using ExchangeRatesManager.Application.Exceptions;
 using ExchangeRatesManager.Domain.Models;
 using ExchangeRatesManager.Domain.Repositories;
 using MediatR;
@@ -9,25 +8,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class UpdateExchangingRateCommandHandler : IRequestHandler<UpdateExchangeRateCommand, Unit>
+namespace ExchangeRatesManager.Application.Features.ExchangeRates.Commands;
+
+public class DeleteExchangeRateCommandHandler : IRequestHandler<DeleteExchangeRateCommand, Unit>
 {
     private readonly IExchangeRateRepository _exchangeRateRepo;
 
-    public UpdateExchangingRateCommandHandler(IExchangeRateRepository repository)
+    public DeleteExchangeRateCommandHandler(IExchangeRateRepository repository)
     {
         _exchangeRateRepo = repository;
     }
 
-    public async Task<Unit> Handle(UpdateExchangeRateCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteExchangeRateCommand request, CancellationToken cancellationToken)
     {
         var exchangeRate = await _exchangeRateRepo.GetByIdAsync(request.Id);
         if (exchangeRate == null)
             throw new NotFoundException(nameof(ExchangeRate), request.Id);
 
-        exchangeRate.Bid = request.Bid;
-        exchangeRate.Ask = request.Ask;
-
-        await _exchangeRateRepo.UpdateAsync(exchangeRate);
+        await _exchangeRateRepo.DeleteAsync(exchangeRate);
 
         return Unit.Value;
     }
