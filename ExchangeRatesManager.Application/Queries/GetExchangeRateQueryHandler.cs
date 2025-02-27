@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExchangeRatesManager.Application.Exceptions;
-using ExchangeRatesManager.Application.Services;
+using ExchangeRatesManager.Application.Services.AlphaVantageAPI;
+using ExchangeRatesManager.Application.Services.RabbitMQ;
 using ExchangeRatesManager.Domain.Models;
 using ExchangeRatesManager.Domain.Repositories;
 using MediatR;

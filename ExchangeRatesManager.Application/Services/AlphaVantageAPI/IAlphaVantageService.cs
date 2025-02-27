@@ -1,7 +1,7 @@
 ﻿using Refit;
 using System.Text.Json.Serialization;
 
-namespace ExchangeRatesManager.Application.Services;
+namespace ExchangeRatesManager.Application.Services.AlphaVantageAPI;
 
 public interface IAlphaVantageService
 {

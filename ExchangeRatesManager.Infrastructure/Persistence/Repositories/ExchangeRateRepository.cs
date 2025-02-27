@@ -29,11 +29,6 @@ public class ExchangeRateRepository : IExchangeRateRepository
         return await _context.ExchangeRates.AsNoTracking().FirstOrDefaultAsync(e => e.FromCurrency == fromCurrency && e.ToCurrency == toCurrency);
     }
 
-    public async Task<List<ExchangeRate>?> GetAllAsync()
-    {
-        return await _context.ExchangeRates.AsNoTracking().ToListAsync();
-    }
-
     public async Task UpdateAsync(ExchangeRate exchangeRate)
     {
         _context.ExchangeRates.Entry(exchangeRate).State = EntityState.Modified;

@@ -6,7 +6,6 @@ public interface IExchangeRateRepository
     Task<Guid> CreateAsync(ExchangeRate exchangeRate);
     Task<ExchangeRate?> GetByIdAsync(Guid id);
     Task<ExchangeRate?> GetByCurrencyPairAsync(string fromCurrency, string toCurrency);
-    Task<List<ExchangeRate>?> GetAllAsync();
     Task UpdateAsync(ExchangeRate exchangeRate);
     Task DeleteAsync(ExchangeRate exchangeRate);
 }
