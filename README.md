@@ -80,4 +80,7 @@ I used MediatR to implement CQRS, which helps by:
 ✅ Encapsulation of Business Rules – Business logic lives inside domain entities, not scattered across services.
 ✅ High Maintainability – Changes to business logic happen in one place (domain layer).
 ✅ Separation of Concerns – Each layer has a distinct responsibility, improving code organization.
+
 ---
+
+END!
