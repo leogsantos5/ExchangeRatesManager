@@ -58,28 +58,28 @@ For this project, I followed Clean Architecture principles combined with CQRS (C
 🛀🏻 1. Clean Architecture – Separation of Concerns
 I structured the solution using Clean Architecture to achieve:
 
-✅ Independent business logic – The core logic is not dependent on external frameworks.
-✅ Separation of concerns – Divides the application into Domain, Application, Infrastructure, and Presentation (Controllers only, for backend) layers.
-✅ Easier testing – Business logic can be tested without worrying about controllers or external dependencies.
+- ✅ Independent business logic – The core logic is not dependent on external frameworks.
+- ✅ Separation of concerns – Divides the application into Domain, Application, Infrastructure, and Presentation (Controllers only, for backend) layers.
+- ✅ Easier testing – Business logic can be tested without worrying about controllers or external dependencies.
 
 📈 2. CQRS (Command Query Responsibility Segregation) – Better Performance & Maintainability
 CQRS splits read (queries) and write (commands) operations, leading to:
 
-✅ Improved scalability – Read operations can be optimized separately from writes.
-✅ Simplified logic – Each request type has a dedicated handler, making it easier to maintain.
+- ✅ Improved scalability – Read operations can be optimized separately from writes.
+- ✅ Simplified logic – Each request type has a dedicated handler, making it easier to maintain.
 
 📨 3. MediatR (Mediator Pattern) – Decoupling & Flexibility
 I used MediatR to implement CQRS, which helps by:
 
-✅ Decoupling components – Controllers don’t directly depend on services they use mediators instead.
-✅ Better organization – Keeps controllers thin by moving logic into separate handlers.
-✅ Scalability – Easier to extend the system with additional behaviors like logging or validation without modifying existing code.
+- ✅ Decoupling components – Controllers don’t directly depend on services they use mediators instead.
+- ✅ Better organization – Keeps controllers thin by moving logic into separate handlers.
+- ✅ Scalability – Easier to extend the system with additional behaviors like logging or validation without modifying existing code.
 
 🧱 4. Why Use DDD?
 
-✅ Encapsulation of Business Rules – Business logic lives inside domain entities, not scattered across services.
-✅ High Maintainability – Changes to business logic happen in one place (domain layer).
-✅ Separation of Concerns – Each layer has a distinct responsibility, improving code organization.
+- ✅ Encapsulation of Business Rules – Business logic lives inside domain entities, not scattered across services.
+- ✅ High Maintainability – Changes to business logic happen in one place (domain layer).
+- ✅ Separation of Concerns – Each layer has a distinct responsibility, improving code organization.
 
 ---
 
