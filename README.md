@@ -19,7 +19,7 @@ Follow these steps to set up and run the project:
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=testPassw0rd!" -e "MSSQL_PID=Express" -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
-### ** Start RabbitMQ Publisher Container (Message Qeueuing) **
+### ** Start RabbitMQ Publisher Container (Message Queuing) **
 ```sh
 docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
 ```
@@ -32,7 +32,7 @@ dotnet ef database update --project ExchangeRatesManager.Infrastructure --startu
 ```
 You are all setup now!
 
-Note: To properly test RabbitMQ's Message Qeueing behaviour, read comments on ExchangeRateConsumer.cs file.
+Note: To properly test RabbitMQ's Message Queuing behaviour, read comments on ExchangeRateConsumer.cs file.
 ---
 
 ### 🛠️ **Technolgies and libraries used: **
@@ -40,6 +40,7 @@ Note: To properly test RabbitMQ's Message Qeueing behaviour, read comments on Ex
 - ASP.NET CORE 8 / .NET 8
 - Entity Framework Core (ORM to manipulate data from and to the DB)
 - Microsoft SQL Server Management Studio 2020 (Testing CRUD fucntionality on DB)
+- RabbitMQ (Message Queuing)
 - Postman (AlphaVantage public API testing)
 - Refit (AlphaVantage public API calls)
 - AutoMapper (Mapping from domain entities to view models)
