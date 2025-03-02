@@ -43,7 +43,7 @@ Note: To properly test RabbitMQ's Message Qeueing behaviour, read comments on Ex
 - Postman (AlphaVantage public API testing)
 - Refit (AlphaVantage public API calls)
 - AutoMapper (Mapping from domain entities to view models)
-- FluentValidation (JSON data validation on API's endpoints)
+- FluentValidation (JSON data and query parameters' validation on API's endpoints)
 - Serilog (Logging to file easily)
 - MediatR (CQRS pattern)
 - xUnit (Unit Testing)
