@@ -18,13 +18,13 @@ public class UpdateExchangeRateCommandHandler : IRequestHandler<UpdateExchangeRa
 
     public async Task<Unit> Handle(UpdateExchangeRateCommand request, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("[HANDLER] Handling UpdateExchangeRateCommand for ID {Id} with Bid: {Bid}, Ask: {Ask}", 
-                                                                               request.Id, request.Bid, request.Ask);
-
         var validator = new UpdateExchangeRateCommandValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (validationResult.Errors.Count != 0)
             throw new BadRequestException(validationResult);
+
+        _logger.LogInformation("[HANDLER] Handling UpdateExchangeRateCommand for ID {Id} with Bid: {Bid}, Ask: {Ask}", 
+                                                                               request.Id, request.Bid, request.Ask);
 
         var exchangeRate = await _exchangeRateRepo.GetByIdAsync(request.Id);
         if (exchangeRate == null)

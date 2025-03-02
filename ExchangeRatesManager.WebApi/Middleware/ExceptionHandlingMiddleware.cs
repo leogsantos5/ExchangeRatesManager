@@ -17,7 +17,7 @@ public class ExceptionHandlingMiddleware
     {
         try
         {
-            await _next(context); // Continue the pipeline
+            await _next(context);
         }
         catch (Exception exception) 
         {

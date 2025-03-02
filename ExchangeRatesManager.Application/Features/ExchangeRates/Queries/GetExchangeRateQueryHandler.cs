@@ -33,15 +33,15 @@ public class GetExchangeRateQueryHandler : IRequestHandler<GetExchangeRateQuery,
 
     public async Task<ExchangeRateViewModel> Handle(GetExchangeRateQuery request, CancellationToken cancellationToken)
     {
-        string fromCurrencyCode = request.FromCurrencyCode; 
-        string toCurrencyCode = request.ToCurrencyCode;
-
-        _logger.LogInformation("[HANDLER] Handling GetExchangeRateQuery for {From} -> {To}", fromCurrencyCode, toCurrencyCode);
-
         var validator = new GetExchangeRateQueryValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
         if (validationResult.Errors.Count != 0)
             throw new BadRequestException(validationResult);
+
+        string fromCurrencyCode = request.FromCurrencyCode; 
+        string toCurrencyCode = request.ToCurrencyCode;
+
+        _logger.LogInformation("[HANDLER] Handling GetExchangeRateQuery for {From} -> {To}", fromCurrencyCode, toCurrencyCode);
 
         var exchangeRate = await _exchangeRateRepo.GetByCurrencyPairAsync(fromCurrencyCode, toCurrencyCode);
         if (exchangeRate == null)

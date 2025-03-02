@@ -22,16 +22,17 @@ public class AddExchangeRateCommandHandler : IRequestHandler<AddExchangeRateComm
 
     public async Task<Guid> Handle(AddExchangeRateCommand request, CancellationToken cancellationToken)
     {
+        var validator = new AddExchangeRateCommandValidator();
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+        if (validationResult.Errors.Count != 0)
+            throw new BadRequestException(validationResult);
+
         string fromCurrencyCode = request.FromCurrencyCode;
         string toCurrencyCode = request.ToCurrencyCode;
 
         _logger.LogInformation("[HANDLER] Handling AddExchangeRateCommand for {From} -> {To} with Bid: {Bid}, Ask: {Ask}",
                                fromCurrencyCode, toCurrencyCode, request.Bid, request.Ask);
 
-        var validator = new AddExchangeRateCommandValidator();
-        var validationResult = await validator.ValidateAsync(request, cancellationToken);
-        if (validationResult.Errors.Count != 0)
-            throw new BadRequestException(validationResult);
 
         var exchangeRate = new ExchangeRate(fromCurrencyCode, toCurrencyCode, request.Bid, request.Ask);
         Guid exchangeRateId = await _exchangeRateRepo.CreateAsync(exchangeRate);

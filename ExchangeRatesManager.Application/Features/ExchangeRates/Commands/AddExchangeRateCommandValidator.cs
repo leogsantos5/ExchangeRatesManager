@@ -9,13 +9,13 @@ public class AddExchangeRateCommandValidator : AbstractValidator<AddExchangeRate
         RuleFor(x => x.FromCurrencyCode)
             .NotEmpty().WithMessage("FromCurrencyCode is required.")
             .Length(3).WithMessage("Currency codes must be 3 characters long.")
-            .Matches("^[A-Z]{3}$").WithMessage("FromCurrencyCode must be uppercase letters (example: 'USD').");
+            .Must(x => x.ToUpper() == x).WithMessage("FromCurrencyCode must be uppercase letters (example: 'USD').");
 
         RuleFor(x => x.ToCurrencyCode)
             .NotEmpty().WithMessage("ToCurrencyCode is required.")
             .Length(3).WithMessage("Currency codes must be 3 characters long.")
-            .Matches("^[A-Z]{3}$").WithMessage("ToCurrencyCode must be uppercase letters (example: 'EUR').")
-            .NotEqual(x => x.FromCurrencyCode).WithMessage("In an Exchange Rate, currencies must be different.");
+            .NotEqual(x => x.FromCurrencyCode).WithMessage("In an Exchange Rate, currencies must be different.")
+            .Must(x => x.ToUpper() == x).WithMessage("FromCurrencyCode must be uppercase letters (example: 'USD').");
 
         RuleFor(x => x.Bid).GreaterThan(0).WithMessage("Bid price must be greater than zero.");
 
