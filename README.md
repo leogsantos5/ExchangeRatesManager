@@ -39,7 +39,7 @@ Note: To properly test RabbitMQ's Message Queuing behaviour, read comments on Ex
 
 - ASP.NET CORE 8 / .NET 8
 - Entity Framework Core (ORM to manipulate data from and to the DB)
-- Microsoft SQL Server Management Studio 2020 (Testing CRUD fucntionality on DB)
+- Microsoft SQL Server Management Studio 2020 (Testing CRUD functionality on DB)
 - RabbitMQ (Message Queuing)
 - Postman (AlphaVantage public API testing)
 - Refit (AlphaVantage public API calls)
