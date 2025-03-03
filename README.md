@@ -56,8 +56,7 @@ Note: To properly test RabbitMQ's Message Queuing behaviour, read comments on Ex
 
 For this project, I followed Clean Architecture principles combined with CQRS (Command Query Responsibility Segregation), MediatR and a Domain Driven Design. At my current job, I develop small backend microservices used and integrated into larger web apps, used by thousands of clients. Because of that, all our solutions employ those same principles and patterns. These choices were made to ensure scalability, maintainability, and separation of concerns. 
 
-🛀🏻 1. Clean Architecture – Separation of Concerns
-I structured the solution using Clean Architecture to achieve:
+🛀🏻 1. Clean Architecture:
 
 - ✅ Independent business logic – The core logic is not dependent on external frameworks.
 - ✅ Separation of concerns – Divides the application into Domain, Application, Infrastructure, and Presentation (Controllers only, for backend) layers.
