@@ -89,7 +89,7 @@ public class ExchangeRateCommandHandlersTests
 
         _mockRepo.Setup(repo => repo.GetByCurrencyPairAsync("USD", "EUR")).ReturnsAsync(exchangeRate);
         _mockMapper.Setup(mapper => mapper.Map<ExchangeRateViewModel>(It.IsAny<ExchangeRate>()))
-                   .Returns(new ExchangeRateViewModel { FromCurrency = "USD", ToCurrency = "EUR", Bid = 1.20m, Ask = 1.25m });
+                   .Returns(new ExchangeRateViewModel { Id = Guid.NewGuid(), FromCurrency = "USD", ToCurrency = "EUR", Bid = 1.20m, Ask = 1.25m });
 
         var result = await _getHandler.Handle(query, CancellationToken.None);
 
@@ -113,7 +113,7 @@ public class ExchangeRateCommandHandlersTests
         _mockRepo.Setup(repo => repo.GetByCurrencyPairAsync("USD", "EUR")).ReturnsAsync((ExchangeRate?) null);
         _mockAlphaVantageService.Setup(service => service.GetExchangeRateAsync("USD", "EUR", It.IsAny<string>())).ReturnsAsync(externalRate);
         _mockMapper.Setup(mapper => mapper.Map<ExchangeRateViewModel>(It.IsAny<ExchangeRate>()))
-                   .Returns(new ExchangeRateViewModel { FromCurrency = "USD", ToCurrency = "EUR", Bid = 1.18m, Ask = 1.22m });
+                   .Returns(new ExchangeRateViewModel { Id = Guid.NewGuid(), FromCurrency = "USD", ToCurrency = "EUR", Bid = 1.18m, Ask = 1.22m });
 
         var result = await _getHandler.Handle(query, CancellationToken.None);
 
