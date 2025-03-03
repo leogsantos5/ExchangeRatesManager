@@ -20,7 +20,7 @@ public class ExchangeRatesController : ControllerBase
     public async Task<IActionResult> AddExchangeRate([FromBody] AddExchangeRateCommand command)
     {
         var exchangeRateId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(GetExchangeRate), new { id = exchangeRateId });
+        return CreatedAtAction(nameof(GetExchangeRate), new { fromCurrency = command.FromCurrencyCode, toCurrency = command.ToCurrencyCode }, null);
     }
 
     [HttpGet("{fromCurrency}/{toCurrency}")]
