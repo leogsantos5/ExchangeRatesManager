@@ -52,7 +52,7 @@ Note: To properly test RabbitMQ's Message Queuing behaviour, read comments on Ex
 - Swagger (API Testing)
 ---
 
-### 🏛️ **Why choose a Clean Architecture with DDD, CQRS & Mediator Pattern?
+### 🏛️ **Why choose a Clean Architecture with DDD, CQRS & Mediator Pattern? **
 
 For this project, I followed Clean Architecture principles combined with CQRS (Command Query Responsibility Segregation), MediatR and a Domain Driven Design. At my current job, I develop small backend microservices used and integrated into larger web apps, used by thousands of clients. Because of that, all our solutions employ those same principles and patterns. These choices were made to ensure scalability, maintainability, and separation of concerns. 
 
