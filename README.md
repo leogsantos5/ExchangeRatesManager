@@ -41,6 +41,7 @@ Note: To properly test RabbitMQ's Message Queuing behaviour, read comments on Ex
 - Entity Framework Core (ORM to manipulate data from and to the DB)
 - Microsoft SQL Server Management Studio 2020 (Testing CRUD functionality on DB)
 - RabbitMQ (Message Queuing)
+- Docker (Local DB and RabbitMQ containers' deployment)
 - Postman (AlphaVantage public API testing)
 - Refit (AlphaVantage public API calls)
 - AutoMapper (Mapping from domain entities to view models)
